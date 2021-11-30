@@ -14,6 +14,14 @@ const Upload = (props) => {
     console.log(e.target);
     console.log(e.target.files[0]);
     console.log(fileInput.current.files[0]);
+
+    const file = fileInput.current.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      console.log(reader.result);
+      dispatch(actionCreators.setpreview(reader.result));
+    };
   };
 
   const uploadFB = () => {
