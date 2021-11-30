@@ -18,13 +18,10 @@ function Post(props) {
           <Image shape="rectangle" src={props.src}></Image>
         </Grid>
         <Grid padding="16px">
-          <Text bold>{props.comment_cnt}개</Text>
+          <Text margin="0px" bold>
+            {props.comment_cnt}개
+          </Text>
         </Grid>
-
-        <div>user profile / user name/ insert_dt</div>
-        <div>contents</div>
-        <div>image</div>
-        <div>comment cnt</div>
       </Grid>
     </React.Fragment>
   );
