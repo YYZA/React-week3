@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid, Image, Text, Button } from "../elements";
+import LikeButton from "../elements/Like";
 import { history } from "../redux/configureStore";
 
 const Post = (props) => {
@@ -14,16 +15,19 @@ const Post = (props) => {
           <Grid is_flex width="auto">
             <Text>{props.insert_dt}</Text>
             {props.is_me && (
-              <Button
-                width="auto"
-                padding="4px"
-                margin="4px"
-                _onClick={() => {
-                  history.push(`/write/${props.id}`);
-                }}
-              >
-                수정
-              </Button>
+              <React.Fragment>
+                <Button
+                  width="auto"
+                  padding="4px"
+                  margin="4px"
+                  _onClick={() => {
+                    history.push(`/write/${props.id}`);
+                  }}
+                >
+                  수정
+                </Button>
+                <LikeButton></LikeButton>
+              </React.Fragment>
             )}
           </Grid>
         </Grid>
@@ -45,10 +49,12 @@ const Post = (props) => {
 
 Post.defaultProps = {
   user_info: {
-    user_name: "mean0",
-    user_profile: "https://mean0images.s3.ap-northeast-2.amazonaws.com/4.jpeg",
+    user_name: "YYZAS",
+    user_profile:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCLc5575T1swxAbDt7dVBzEaMVSdYhULaamw&usqp=CAU",
   },
-  image_url: "https://mean0images.s3.ap-northeast-2.amazonaws.com/4.jpeg",
+  image_url:
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCLc5575T1swxAbDt7dVBzEaMVSdYhULaamw&usqp=CAU",
   contents: "고양이네요!",
   comment_cnt: 10,
   insert_dt: "2021-02-27 10:00:00",

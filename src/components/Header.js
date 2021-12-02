@@ -16,20 +16,22 @@ const Header = (props) => {
     return (
       <React.Fragment>
         <Grid is_flex padding="4px 16px">
-          <Grid>
+          <Grid width="100px">
             <Text margin="0px" size="24px" bold>
-              헬로 치와와
+              와와!
             </Text>
           </Grid>
           <Grid is_flex>
-            <Button text="내정보"></Button>
+            <Button margin="3px" text="내정보"></Button>
             <Button
+              margin="3px"
               text="알림"
               _onClick={() => {
                 history.push("/noti");
               }}
             ></Button>
             <Button
+              margin="3px"
               text="로그아웃"
               _onClick={() => {
                 dispatch(actionCreators.logoutFB());
@@ -46,17 +48,19 @@ const Header = (props) => {
       <Grid is_flex padding="4px 16px">
         <Grid>
           <Text margin="0px" size="24px" bold>
-            헬로
+            와와!
           </Text>
         </Grid>
         <Grid is_flex>
           <Button
+            margin="3px"
             text="로그인"
             _onClick={() => {
               history.push("/login");
             }}
           ></Button>
           <Button
+            margin="3px"
             text="회원가입"
             _onClick={() => {
               history.push("/signup");

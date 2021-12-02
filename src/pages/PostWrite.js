@@ -93,6 +93,7 @@ const PostWrite = (props) => {
           <Button _onClick={editPost}>게시글 수정</Button>
         ) : (
           <Button
+            margin="0px"
             _onClick={() => {
               dispatch(actionCreators.addPostFB(contents));
             }}
