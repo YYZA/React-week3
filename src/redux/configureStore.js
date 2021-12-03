@@ -7,10 +7,12 @@ import User from "./modules/user";
 import Post from "./modules/post";
 import Image from "./modules/iamge";
 import Comment from "./modules/comment";
+import Like from "./modules/like";
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
+  like: Like,
   user: User,
   post: Post,
   image: Image,

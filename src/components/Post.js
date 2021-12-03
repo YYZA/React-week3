@@ -1,9 +1,12 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Grid, Image, Text, Button } from "../elements";
-import LikeButton from "../elements/Like";
+import Like from "../elements/Like";
 import { history } from "../redux/configureStore";
+import { actionCreators } from "../redux/modules/post";
 
 const Post = (props) => {
+  const dispatch = useDispatch();
   return (
     <React.Fragment>
       <Grid>
@@ -20,13 +23,25 @@ const Post = (props) => {
                   width="auto"
                   padding="4px"
                   margin="4px"
-                  _onClick={() => {
+                  _onClick={(e) => {
+                    e.stopPropagation();
                     history.push(`/write/${props.id}`);
                   }}
                 >
                   수정
                 </Button>
-                <LikeButton></LikeButton>
+                <Button
+                  width="auto"
+                  padding="4px"
+                  margin="4px"
+                  _onClick={(e) => {
+                    e.stopPropagation();
+                    dispatch(actionCreators.deletePostFB(props.id));
+                  }}
+                >
+                  삭제
+                </Button>
+                <Like {...props}></Like>
               </React.Fragment>
             )}
           </Grid>

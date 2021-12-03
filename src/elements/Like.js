@@ -1,49 +1,57 @@
-import React from "react";
-import { HeartOutlined, HeartFilled } from "@ant-design/icons";
-class LikeButton extends React.Component {
-  state = {
-    isChecked: false,
-    notice: " ",
+import React, { useEffect, useState } from "react";
+import IconButton from "@material-ui/core/IconButton";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as likeActions } from "../redux/modules/like";
+import { history } from "../redux/configureStore";
+
+function Like(props) {
+  const dispatch = useDispatch();
+  let is_like = useSelector((state) => state.like.is_like);
+  const [like, setLike] = useState(is_like ? true : false);
+  const like_list = useSelector((state) => state.like.list);
+  const post_id = props.id;
+  const post_url = history.location.pathname.split("/")[2];
+  const user_id = useSelector((state) => state.user.user.uid);
+  useEffect(() => {
+    dispatch(likeActions.isLike(false));
+    dispatch(likeActions.getLikeFB(post_id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch]);
+
+  like_list.forEach((val) => {
+    if (val.user_id === user_id) {
+      dispatch(likeActions.isLike(true));
+    }
+  });
+
+  if (!post_id) {
+    return null;
+  }
+  const likeClick = () => {
+    if (!is_like) {
+      dispatch(likeActions.likeFB(post_id, user_id));
+      setLike(true);
+    } else if (is_like) {
+      dispatch(likeActions.unlikeFB(post_id, user_id));
+      setLike(false);
+    }
   };
 
-  onClick = () => {
-    this.state.isChecked
-      ? this.setState({
-          isChecked: false,
-        })
-      : this.setState({
-          isChecked: true,
-        });
-  };
-  render() {
-    return (
-      <React.Fragment>
-        <div className="icons-list">
-          {this.state.isChecked ? (
-            <HeartFilled
-              style={{ color: "red", fontSize: "30px", marginTop: "20px" }}
-              className="button red"
-              onClick={(e) => {
-                e.stopPropagation();
-                e.stopPropagation();
-                this.onClick();
-              }}
-            />
+  return (
+    <>
+      {post_url !== undefined ? (
+        <IconButton aria-label="add to favorites" onClick={likeClick}>
+          {is_like ? (
+            <FavoriteIcon style={{ color: "#FFC0CB" }} />
           ) : (
-            <HeartOutlined
-              style={{ fontSize: "30px", marginTop: "20px" }}
-              className="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                e.stopPropagation();
-                this.onClick();
-              }}
-            />
+            <FavoriteBorderIcon />
           )}
-          <h3>{this.state.notice}</h3>
-        </div>
-      </React.Fragment>
-    );
-  }
+        </IconButton>
+      ) : null}
+    </>
+  );
 }
-export default LikeButton;
+
+export default Like;

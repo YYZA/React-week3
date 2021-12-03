@@ -9,6 +9,7 @@ const SET_POST = "SET_POST";
 const ADD_POST = "ADD_POST";
 const EDIT_POST = "EDIT_POST";
 const LOADING = "LOADING";
+const DELETE_POST = "DELETE_POST";
 
 const setPost = createAction(SET_POST, (post_list, paging) => ({
   post_list,
@@ -20,6 +21,7 @@ const editPost = createAction(EDIT_POST, (post_id, post) => ({
   post,
 }));
 const loading = createAction(LOADING, (is_loading) => ({ is_loading }));
+const deletePost = createAction(DELETE_POST, (post_id) => ({ post_id }));
 
 const initialState = {
   list: [],
@@ -39,6 +41,25 @@ const initialPost = {
   contents: "",
   comment_cnt: 0,
   insert_dt: moment().format("YYYY-MM-DD hh:mm:ss"),
+};
+
+const deletePostFB = (post_id = null) => {
+  return function (dispatch, getState, { history }) {
+    if (!post_id) {
+      return;
+    }
+    const postDB = firestore.collection("post");
+    postDB
+      .doc(post_id)
+      .delete()
+      .then((res) => {
+        dispatch(deletePost(post_id));
+        history.replace("/");
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 };
 
 const editPostFB = (post_id = null, post = {}) => {
@@ -236,6 +257,13 @@ export default handleActions(
         }
         draft.is_loading = false;
       }),
+    [DELETE_POST]: (state, action) =>
+      produce(state, (draft) => {
+        let idx = draft.list.findIndex(
+          (val) => val.id === action.payload.post_id
+        );
+        draft.list.splice(idx, 1);
+      }),
 
     [ADD_POST]: (state, action) =>
       produce(state, (draft) => {
@@ -262,6 +290,7 @@ const actionCreators = {
   editPostFB,
   getOnePostFB,
   editPost,
+  deletePostFB,
 };
 
 export { actionCreators };
