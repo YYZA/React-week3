@@ -55,52 +55,64 @@ const PostWrite = (props) => {
   }
   return (
     <React.Fragment>
-      <Grid padding="16px">
-        <Text margine="0px" size="36px" bold>
-          {is_edit ? "게시글 수정" : "게시글 작성"}
-        </Text>
-        <Upload />
-      </Grid>
-      <Grid>
+      <Grid
+        center
+        shadow="rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;"
+        max_width="600px"
+        margin="10px auto"
+        bg={"#fff"}
+      >
         <Grid padding="16px">
-          <Text margine="0px" size="24px" bold>
-            미리보기
+          <Text margine="0px" size="36px" bold>
+            {is_edit ? "게시글 수정" : "게시글 작성"}
           </Text>
+          <Grid padding="16px" border="2px solid">
+            <Upload />
+          </Grid>
         </Grid>
-        <Image
-          shape="rectangle"
-          src={preview ? preview : "http://via.placeholder.com/400x300"}
-        ></Image>
-      </Grid>
-      <Grid padding="16px">
-        <Input
-          value={contents}
-          _onChange={changeContents}
-          label="게시글 내용"
-          placeholder="게시글 작성"
-          multiLine
-        ></Input>
-      </Grid>
-      <Grid padding="16px">
-        {/* <Button
+        <Grid>
+          <Grid>
+            <Text margine="0px" size="24px" bold>
+              미리보기
+            </Text>
+          </Grid>
+          <Grid padding="0px 16px">
+            <Image
+              shape="rectangle"
+              src={preview ? preview : "http://via.placeholder.com/400x300"}
+            ></Image>
+          </Grid>
+        </Grid>
+        <Grid padding="16px">
+          <Input
+            value={contents}
+            _onChange={changeContents}
+            label="강아지 소개"
+            placeholder="소개글 작성"
+            multiLine
+          ></Input>
+        </Grid>
+        <Grid padding="16px">
+          {/* <Button
           _onClick={() => {
             dispatch(actionCreators.addPostFB(contents));
           }}
         >
           게시글 작성
         </Button> */}
-        {is_edit ? (
-          <Button _onClick={editPost}>게시글 수정</Button>
-        ) : (
-          <Button
-            margin="0px"
-            _onClick={() => {
-              dispatch(actionCreators.addPostFB(contents));
-            }}
-          >
-            게시글 작성
-          </Button>
-        )}
+          {is_edit ? (
+            <Button _onClick={editPost}>게시글 수정</Button>
+          ) : (
+            <Button
+              margin="0px"
+              _onClick={() => {
+                dispatch(actionCreators.addPostFB(contents));
+              }}
+            >
+              게시글 작성
+            </Button>
+          )}
+        </Grid>
       </Grid>
     </React.Fragment>
   );

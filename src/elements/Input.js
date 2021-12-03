@@ -12,6 +12,7 @@ const Input = (props) => {
     value,
     is_submit,
     onSubmit,
+    width,
   } = props;
 
   if (multiLine) {
@@ -33,7 +34,7 @@ const Input = (props) => {
       <Grid>
         {label && <Text margin="0px">{label}</Text>}
         {is_submit ? (
-          <ElInput
+          <ElTextarea
             type={type}
             placeholder={placeholder}
             onChange={_onChange}
@@ -43,7 +44,7 @@ const Input = (props) => {
                 onSubmit(e);
               }
             }}
-          ></ElInput>
+          ></ElTextarea>
         ) : (
           <ElInput
             type={type}
@@ -58,12 +59,14 @@ const Input = (props) => {
 
 const ElTextarea = styled.textarea`
   border: 2px solid #212121;
+  border-radius: 5px;
   width: 100%;
   padding: 12px 4px;
   box-sizing: border-box;
 `;
 
 Input.defaultProps = {
+  width: "50%",
   multiLine: false,
   label: false,
   placeholder: "텍스트를 입력해주세요.",
@@ -76,8 +79,9 @@ Input.defaultProps = {
 
 const ElInput = styled.input`
   border: 1px solid #212121;
-  width: 100%;
+  width: 50%;
   padding: 12px 4px;
+  border-radius: 10px;
   box-sizing: border-box;
 `;
 

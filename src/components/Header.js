@@ -15,19 +15,18 @@ const Header = (props) => {
   if (is_login && is_session) {
     return (
       <React.Fragment>
-        <Grid is_flex padding="4px 16px">
-          <Grid width="100px">
-            <Text margin="0px" size="24px" bold>
-              와와!
+        <Grid is_flex padding="4px 16px" margin="0px 0px 30px 0px" bg="#fff">
+          <Grid width="300px">
+            <Text margin="0px 0px 0px 20px" size="24px" bold color="#885A3A">
+              와와 🐶
             </Text>
           </Grid>
-          <Grid is_flex>
-            <Button margin="3px" text="내정보"></Button>
+          <Grid is_flex max_width="200px" margin="0px 20px 0px 0px">
             <Button
               margin="3px"
-              text="알림"
+              text="메인페이지"
               _onClick={() => {
-                history.push("/noti");
+                history.push("/");
               }}
             ></Button>
             <Button
@@ -45,13 +44,13 @@ const Header = (props) => {
 
   return (
     <React.Fragment>
-      <Grid is_flex padding="4px 16px">
+      <Grid is_flex padding="4px 16px" margin="0px 0px 30px 0px" bg="#fff">
         <Grid>
           <Text margin="0px" size="24px" bold>
             와와!
           </Text>
         </Grid>
-        <Grid is_flex>
+        <Grid is_flex max_width="200px">
           <Button
             margin="3px"
             text="로그인"

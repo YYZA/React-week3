@@ -26,39 +26,48 @@ const Login = (props) => {
   };
   return (
     <React.Fragment>
-      <Grid padding="16px">
-        <Text size="32px" bold>
-          로그인
-        </Text>
+      <Grid
+        center
+        bg={"#EFF6FF"}
+        max_width="600px"
+        margin="200px auto"
+        shadow="rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;"
+      >
+        <Grid padding="16px">
+          <Text size="32px" bold>
+            로그인
+          </Text>
 
-        <Grid padding="16px 0px">
-          <Input
-            label="아이디"
-            placeholder="아이디를 입력해주세요."
-            _onChange={(e) => {
-              setId(e.target.value);
-            }}
-          />
+          <Grid padding="16px 0px">
+            <Input
+              label="아이디"
+              placeholder="아이디를 입력해주세요."
+              _onChange={(e) => {
+                setId(e.target.value);
+              }}
+            />
+          </Grid>
+
+          <Grid padding="16px 0px">
+            <Input
+              label="패스워드"
+              placeholder="패스워드 입력해주세요."
+              type="password"
+              _onChange={(e) => {
+                setPwd(e.target.value);
+              }}
+            />
+          </Grid>
+          <Grid padding="20px 200px">
+            <Button
+              text="로그인하기"
+              _onClick={() => {
+                login();
+                console.log("로그인 했어!");
+              }}
+            ></Button>
+          </Grid>
         </Grid>
-
-        <Grid padding="16px 0px">
-          <Input
-            label="패스워드"
-            placeholder="패스워드 입력해주세요."
-            type="password"
-            _onChange={(e) => {
-              setPwd(e.target.value);
-            }}
-          />
-        </Grid>
-
-        <Button
-          text="로그인하기"
-          _onClick={() => {
-            login();
-            console.log("로그인 했어!");
-          }}
-        ></Button>
       </Grid>
     </React.Fragment>
   );

@@ -9,7 +9,7 @@ const Post = (props) => {
   const dispatch = useDispatch();
   return (
     <React.Fragment>
-      <Grid>
+      <Grid width="100%">
         <Grid is_flex padding="16px">
           <Grid is_flex width="auto">
             <Image shape="circle" src={props.src} />
@@ -20,17 +20,19 @@ const Post = (props) => {
             {props.is_me && (
               <React.Fragment>
                 <Button
+                  bg="#0655A3"
                   width="auto"
-                  padding="4px"
-                  margin="4px"
+                  padding="4px 6px 4px 4px"
+                  margin="4px 4px 4px 10px"
                   _onClick={(e) => {
                     e.stopPropagation();
                     history.push(`/write/${props.id}`);
                   }}
                 >
-                  수정
+                  Edit
                 </Button>
                 <Button
+                  bg="#E64C3C"
                   width="auto"
                   padding="4px"
                   margin="4px"
@@ -39,17 +41,19 @@ const Post = (props) => {
                     dispatch(actionCreators.deletePostFB(props.id));
                   }}
                 >
-                  삭제
+                  Delete
                 </Button>
                 <Like {...props}></Like>
               </React.Fragment>
             )}
           </Grid>
         </Grid>
-        <Grid padding="16px">
-          <Text>{props.contents}</Text>
+        <Grid padding="0px 16px" center>
+          <Text bold size="36px">
+            "강아지 소개"<Text size="18px">{props.contents}</Text>
+          </Text>
         </Grid>
-        <Grid>
+        <Grid padding="0px 16px">
           <Image shape="rectangle" src={props.image_url} />
         </Grid>
         <Grid padding="16px">

@@ -20,7 +20,7 @@ const PostList = (props) => {
 
   return (
     <React.Fragment>
-      <Grid bg={"#EFF6FF"} padding="10px 0px 20px 0px">
+      <Grid is_flex wrap="wrap" bg="#C7B3A3" padding="10px 0px 20px 0px">
         <InfinityScroll
           callNext={() => {
             dispatch(actionCreators.getPostFB(paging.next));
@@ -33,7 +33,10 @@ const PostList = (props) => {
             if (p.user_info.user_id === user_info?.uid) {
               return (
                 <Grid
-                  margin="10px 0px"
+                  cursor="pointer"
+                  shadow="rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;"
+                  max_width="600px"
+                  margin="10px auto"
                   bg={"#fff"}
                   key={p.id}
                   _onClick={() => {
@@ -46,7 +49,10 @@ const PostList = (props) => {
             } else {
               return (
                 <Grid
-                  margin="10px 0px"
+                  cursor="pointer"
+                  shadow="rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;"
+                  max_width="600px"
+                  margin="10px auto"
                   bg={"#fff"}
                   key={p.id}
                   _onClick={() => {
