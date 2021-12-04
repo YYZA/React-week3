@@ -6,6 +6,7 @@ import { history } from "../redux/configureStore";
 import { actionCreators } from "../redux/modules/post";
 
 const Post = (props) => {
+  console.log(props);
   const dispatch = useDispatch();
   return (
     <React.Fragment>
@@ -50,15 +51,17 @@ const Post = (props) => {
         </Grid>
         <Grid padding="0px 16px" center>
           <Text bold size="36px">
-            "강아지 소개"<Text size="18px">{props.contents}</Text>
+            "My-WaWa!"<Text size="18px">{props.contents}</Text>
           </Text>
         </Grid>
         <Grid padding="0px 16px">
           <Image shape="rectangle" src={props.image_url} />
         </Grid>
-        <Grid padding="16px">
+        <Grid is_flex padding="16px">
           <Text margin="0px" bold>
-            댓글 {props.comment_cnt}개
+            <span style={{ color: "red", fontSize: "20px" }}>♥</span> 좋아요
+            {props.like} 댓글
+            {props.comment_cnt}
           </Text>
         </Grid>
       </Grid>
