@@ -6,7 +6,7 @@ import Permit from "../shared/Permit";
 import { useDispatch, useSelector } from "react-redux";
 
 import { actionCreators } from "../redux/modules/post";
-import { Grid } from "../elements";
+import { Grid, Text } from "../elements";
 
 const PostDetail = (props) => {
   const id = props.match.params.id;

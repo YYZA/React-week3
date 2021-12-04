@@ -19,7 +19,6 @@ function Like(props) {
     dispatch(likeActions.getLikeFB(post_id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
-
   like_list.forEach((val) => {
     if (val.user_id === user_id) {
       dispatch(likeActions.isLike(true));
@@ -37,6 +36,7 @@ function Like(props) {
       dispatch(likeActions.unlikeFB(post_id, user_id));
       setLike(false);
     }
+    history.goBack();
   };
 
   return (
